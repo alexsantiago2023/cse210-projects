@@ -15,17 +15,17 @@ class Program
             string input2 = Console.ReadLine();
             guess = int.Parse(input2);
             if (guess > magic)
-                {
-                    Console.WriteLine("Lower");
-                }
-                else if (guess < magic)
-                {
-                    Console.WriteLine("Higher");
-                }
-                else if (guess == magic)
-                {
-                    Console.WriteLine("You guessed it!");
-                }
+            {
+                Console.WriteLine("Lower");
+            }
+            else if (guess < magic)
+            {
+                Console.WriteLine("Higher");
+            }
+            else if (guess == magic)
+            {
+                Console.WriteLine("You guessed it!");
+            }
         }
     }
 }
