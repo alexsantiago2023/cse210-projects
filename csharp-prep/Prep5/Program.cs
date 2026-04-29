@@ -41,6 +41,7 @@ class Program
         Console.WriteLine($"{name}, the square of your number is {square}.");
 
         int age = DateTime.Now.Year - year;
+        Console.WriteLine($"Alex, you will turn {age} this year.");
     }
 
     static void Main(string[] args)
