@@ -13,8 +13,16 @@ primary
 lastDtbSucceeded
 
 [properties]
+AssemblyName=CircleApplication
 CommandLineArgsForDesignTimeEvaluation=-langversion:14.0 -define:TRACE
+CompilerGeneratedFilesOutputPath=
 MaxSupportedLangVersion=14.0
+ProjectAssetsFile=<PATH>obj/project.assets.json
+RootNamespace=CircleApplication
+RunAnalyzers=
+RunAnalyzersDuringLiveAnalysis=
+SolutionPath=<PATH>../../cse210-student-template.sln
+TargetFrameworkIdentifier=.NETCoreApp
 TargetPath=<PATH>bin/Debug/net10.0/CircleApplication.dll
 TargetRefPath=<PATH>obj/Debug/net10.0/ref/CircleApplication.dll
 TemporaryDependencyNodeTargetIdentifier=net10.0
