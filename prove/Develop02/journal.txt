@@ -1,8 +1,10 @@
-Date: 5/13/2026
+Date: 5/13/2026 2:15:02 PM 
 
-Prompt:
-What
-Date: 5/13/2026
+ Prompt: What was the best part of my day? 
 
-Prompt:
-If
+reading
+Date: 5/13/2026 2:15:11 PM 
+
+ Prompt: How did I see the hand of the Lord in my life today? 
+
+prayer

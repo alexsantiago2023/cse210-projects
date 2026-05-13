@@ -18,7 +18,7 @@ public class Menu
                 journal.WriteEntry();
             } else if (choice == 2)
             {
-                journal.Display();
+                journal.DisplayJournal();
             } else if (choice == 3)
             {
                 
