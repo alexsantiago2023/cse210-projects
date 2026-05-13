@@ -23,7 +23,7 @@ public class Journal
         DateTime currentTime = DateTime.Now;
 
         JournalEntry entry = new JournalEntry();
-        _entries.Add(entry.CreateJournalEntry(currentTime, prompt, journalEntry));        
+        _entries.Add(entry.CreateJournalEntry(currentTime, prompt, journalEntry));
     }
 
     public void Display()
@@ -36,7 +36,7 @@ public class Journal
 
     public void LoadFile()
     {
-        
+
     }
 
     public void SaveToFile()
@@ -44,11 +44,16 @@ public class Journal
         Console.WriteLine("What is the file name?");
         string fileName = Console.ReadLine();
 
+        JournalEntry logEntry = new JournalEntry();
+
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            
+            foreach (string entry in _entries)
+            {
+                outputFile.WriteLine(logEntry.CreateFileSystemString(entry));
+            }
         }
     }
 
-    
+
 }
