@@ -1,17 +1,24 @@
-class JournalEntry
+using System.IO;
+public class JournalEntry
 {
-    string _date;
+    DateTime _date;
     string _prompt;
     string _response;
 
+    
+
     public void Display()
     {
-        
+
     }
 
-    public void CreateJournalEntry(string date, string prompt, string response)
+    public string CreateJournalEntry(DateTime date, string prompt, string response)
     {
-        
+        _date = date;
+        _prompt = prompt;
+        _response = response;
+        string fullEntry = $"Date: {date} - Prompt: {prompt}\n{response}";
+        return fullEntry;
     }
 
     public void CreateJournalEntry()
@@ -21,6 +28,6 @@ class JournalEntry
 
     public void CreateFileSystemString()
     {
-        
+
     }
 }
