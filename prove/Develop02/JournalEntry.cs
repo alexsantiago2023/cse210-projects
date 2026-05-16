@@ -39,7 +39,7 @@ public class JournalEntry
 
     public string CreateFileSystemString(string entry)
     {
-        //List<string> responses = new List<string>();
+        List<string> responses = new List<string>();
 
         string[] parts = entry.Split("- ");
         _dateString = parts[0];
