@@ -6,16 +6,16 @@ public class JournalEntry
     string _prompt;
     string _response;
 
-    
 
-    public void Display()
+
+    public string DisplayForFile(string date, string prompt, string response)
     {
-
+        return $"Date: {date}|Prompt: {prompt}|{response}";
     }
 
-    public string CreateJournalEntry(DateTime date, string prompt, string response)
+    public string CreateJournalEntry(string date, string prompt, string response)
     {
-        _date = date;
+        _dateString = date;
         _prompt = prompt;
         _response = response;
         string fullEntry = $"Date: {date} - Prompt: {prompt} \n{response}";
@@ -24,19 +24,19 @@ public class JournalEntry
 
     public void CreateJournalEntry()
     {
-        
+
     }
 
     public string CreateFileSystemString(string entry)
     {
         //List<string> responses = new List<string>();
 
-        string[] parts = entry.Split(' ');
-        _dateString = parts[0] + " " + parts[1];
-        _prompt = parts[5];
-        _response = parts[6];
+        string[] parts = entry.Split('|');
+        _dateString = parts[0];
+        _prompt = parts[1];
+        _response = parts[2];
 
-        string response =  _dateString + '\n' + '\n' + _prompt + '\n' + _response;
+        string response = _dateString + '\n' + '\n' + _prompt + '\n' + _response + '\n';
 
         return response;
     }

@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 public class Journal
 {
     public List<string> _entries = new List<string>();
+    public List<string> _journalEntries = new List<string>();
 
     List<string> _prompts = new List<string>
     {
@@ -10,7 +11,8 @@ public class Journal
          "What was the best part of my day?",
          "How did I see the hand of the Lord in my life today?",
          "What was the strongest emotion I felt today?",
-         "If I had one thing I could do over today, what would it be?"};
+         "If I had one thing I could do over today, what would it be?",
+         "What did I do today?"};
 
     public void WriteEntry()
     {
@@ -20,10 +22,11 @@ public class Journal
         Console.WriteLine(prompt);
         Console.Write("> ");
         string journalEntry = Console.ReadLine();
-        DateTime currentTime = DateTime.Now;
+        string currentTime = DateTime.Now.ToString();
 
         JournalEntry entry = new JournalEntry();
         _entries.Add(entry.CreateJournalEntry(currentTime, prompt, journalEntry));
+        _journalEntries.Add(entry.DisplayForFile(currentTime, prompt, journalEntry));
     }
 
     public void Display()
@@ -48,7 +51,7 @@ public class Journal
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            foreach (string entry in _entries)
+            foreach (string entry in _journalEntries)
             {
                 outputFile.WriteLine(logEntry.CreateFileSystemString(entry));
             }
