@@ -1,3 +1,4 @@
+using System.IO.Enumeration;
 using System.Security.Cryptography.X509Certificates;
 
 public class Journal
@@ -39,6 +40,20 @@ public class Journal
 
     public void LoadFile()
     {
+        Console.Write("What is the file name?");
+        string filename = Console.ReadLine();
+        string[] lines = System.IO.File.ReadAllLines(filename);
+        JournalEntry entry = new JournalEntry();
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("|");
+            string date = parts[0];
+            string prompt = parts[1];
+            string response = parts[2];
+
+            _entries.Add(entry.CreateJournalEntry(date, prompt, response));
+        }
 
     }
 
@@ -49,11 +64,11 @@ public class Journal
 
         JournalEntry logEntry = new JournalEntry();
 
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        using (StreamWriter outputFile = new StreamWriter(fileName, true))
         {
             foreach (string entry in _journalEntries)
             {
-                outputFile.WriteLine(logEntry.CreateFileSystemString(entry));
+                outputFile.WriteLine(entry);
             }
         }
     }
