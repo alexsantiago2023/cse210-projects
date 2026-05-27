@@ -1,0 +1,1 @@
+//take in name, chapter and verses. two funciotns are
