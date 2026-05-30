@@ -42,5 +42,3 @@ class Word
         Console.WriteLine(GetWordString());
     }
 }
-
-//Whenever the word is called, make _word the word and make _isHidden false initially.

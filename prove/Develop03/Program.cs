@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Win32.SafeHandles;
 
 class Program
 {
@@ -6,17 +7,14 @@ class Program
     {
         Console.WriteLine("Hello Develop03 World!");
 
-        //Scripture myScripture = new Scripture();
-        //myScripture.Display();
+        List<Scripture> scriptures = new List<Scripture>();
+        Scripture sr = new Scripture("John", 3, 16, "For God so loved the world");
 
-        Word myWord = new Word("Hello");
-        myWord.Hide();
-        Console.WriteLine(myWord.GetWordString());
-
-        myWord.DisplayWord();
-        if (myWord.IsHidden())
+        scriptures.Add(sr);
+        foreach (Scripture s in scriptures)
         {
-            Console.WriteLine(myWord.GetWordString());
+            s.ConvertToWords(_content);
+            s.Display();
         }
     }
 }
