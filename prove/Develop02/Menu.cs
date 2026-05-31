@@ -8,7 +8,6 @@ public class Menu
 
         Journal journal = new Journal();
 
-
         do {
             Console.WriteLine("Please select one of the following choices:\n1. Write\n2. Display\n3. Load\n4. Save\n5. Quit");
             Console.Write("What would you like to do? ");
@@ -21,7 +20,7 @@ public class Menu
                 journal.DisplayJournal();
             } else if (choice == 3)
             {
-                
+                journal.LoadFile();
             } else if (choice == 4)
             {
                 journal.SaveToFile();

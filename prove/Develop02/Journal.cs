@@ -1,8 +1,23 @@
+using System.IO.Enumeration;
 using System.Security.Cryptography.X509Certificates;
 
 public class Journal
 {
+<<<<<<< HEAD
     List<JournalEntry> _journalEntries = new List<JournalEntry>();
+=======
+    public List<string> _entries = new List<string>();
+    public List<string> _journalEntries = new List<string>();
+
+    List<string> _prompts = new List<string>
+    {
+         "Who was the most interesting person I interacted with today?",
+         "What was the best part of my day?",
+         "How did I see the hand of the Lord in my life today?",
+         "What was the strongest emotion I felt today?",
+         "If I had one thing I could do over today, what would it be?",
+         "What did I do today?"};
+>>>>>>> fixed-journal
 
     public void WriteEntry()
     {
@@ -12,10 +27,15 @@ public class Journal
         Console.WriteLine(prompt);
         Console.Write("> ");
         string journalEntry = Console.ReadLine();
+<<<<<<< HEAD
         string currentTime = DateTime.Now.ToShortDateString();
+=======
+        string currentTime = DateTime.Now.ToString();
+>>>>>>> fixed-journal
 
         JournalEntry entry = new JournalEntry();
         _entries.Add(entry.CreateJournalEntry(currentTime, prompt, journalEntry));
+        _journalEntries.Add(entry.DisplayForFile(currentTime, prompt, journalEntry));
     }
 
     public void AddEntry(JournalEntry journalEntry)
@@ -33,6 +53,20 @@ public class Journal
 
     public void LoadFile()
     {
+        Console.Write("What is the file name?");
+        string filename = Console.ReadLine();
+        string[] lines = System.IO.File.ReadAllLines(filename);
+        JournalEntry entry = new JournalEntry();
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("|");
+            string date = parts[0];
+            string prompt = parts[1];
+            string response = parts[2];
+
+            _entries.Add(entry.CreateJournalEntry(date, prompt, response));
+        }
 
     }
 
@@ -43,11 +77,11 @@ public class Journal
 
         JournalEntry logEntry = new JournalEntry();
 
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        using (StreamWriter outputFile = new StreamWriter(fileName, true))
         {
-            foreach (string entry in _entries)
+            foreach (string entry in _journalEntries)
             {
-                outputFile.WriteLine(logEntry.CreateFileSystemString(entry));
+                outputFile.WriteLine(entry);
             }
         }
     }

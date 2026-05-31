@@ -1,6 +1,7 @@
 using System.IO;
 public class JournalEntry
 {
+<<<<<<< HEAD
     //Figure out where you need dates and prompts
     DateTime _date;
     string _dateString;
@@ -18,6 +19,15 @@ public class JournalEntry
     public void DisplayJournalEntry()
     {
         Console.WriteLine($"{_date} - {_prompt}: {_response}");
+=======
+    string _date;
+    string _prompt;
+    string _response;
+
+    public string DisplayForFile(string date, string prompt, string response)
+    {
+        return $"Date: {date}|Prompt: {prompt}|{response}";
+>>>>>>> fixed-journal
     }
 
     public string CreateJournalEntry(string date, string prompt, string response)
@@ -29,6 +39,7 @@ public class JournalEntry
         return fullEntry;
     }
 
+<<<<<<< HEAD
     public void CreateJournalEntry()
     {
         _dateString = DateTime.Now.ToShortDateString();
@@ -37,16 +48,27 @@ public class JournalEntry
         _response = Console.ReadLine();
     }
 
+=======
+>>>>>>> fixed-journal
     public string CreateFileSystemString(string entry)
     {
         List<string> responses = new List<string>();
 
+<<<<<<< HEAD
         string[] parts = entry.Split("- ");
         _dateString = parts[0];
         _prompt = parts[1];
         _response = parts[2];
 
         string response =  _dateString + '\n' + '\n' + _prompt + "> " + _response;
+=======
+        string[] parts = entry.Split('|');
+        _date = parts[0];
+        _prompt = parts[1];
+        _response = parts[2];
+
+        string response = _date + '\n' + '\n' + _prompt + '\n' + _response + '\n';
+>>>>>>> fixed-journal
 
         return response;
     }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Date: 5/13/2026 2:15:02 PM 
 
  Prompt: What was the best part of my day? 
@@ -8,3 +9,7 @@ Date: 5/13/2026 2:15:11 PM
  Prompt: How did I see the hand of the Lord in my life today? 
 
 prayer
+=======
+Date: 5/16/2026 9:46:09 PM|Prompt: What was the strongest emotion I felt today?|sleepy
+Date: 5/16/2026 9:48:48 PM|Prompt: What was the strongest emotion I felt today?|tired pt.2
+>>>>>>> fixed-journal
