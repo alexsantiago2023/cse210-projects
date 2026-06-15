@@ -7,8 +7,13 @@ class Police : Person
         _weapons = weapons;
     }
 
-    public string GetPoliceManInfo()
+    public override string GetPersonInfo()
     {
-        return $"Weapons: {_weapons}, {GetPersonInfo()}";
+        return $"Weapons: {_weapons}, {base.GetPersonInfo()}";
+    }
+
+    public override double GetSalary()
+    {
+        return 80000.00;
     }
 }
