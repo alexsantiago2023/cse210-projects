@@ -1,0 +1,20 @@
+Reading|The Way of Kings|Brandon Sanderson|Fantasy|1007|07/17/2026|352
+Reading|Project Hail Mary|Andy Weir|Science Fiction|496|07/17/2026|214
+Reading|Mistborn|Brandon Sanderson|Fantasy|541|07/17/2026|88
+Reading|Jurassic Park|Michael Crichton|Science Fiction|448|07/17/2026|120
+Reading|The Martian|Andy Weir|Science Fiction|369|07/17/2026|200
+Reading|The Fellowship of the Ring|J.R.R. Tolkien|Fantasy|423|07/17/2026|167
+Reading|1984|George Orwell|Dystopian|328|07/17/2026|142
+Reading|Ready Player One|Ernest Cline|Science Fiction|374|07/17/2026|175
+Reading|The Name of the Wind|Patrick Rothfuss|Fantasy|662|07/17/2026|298
+Reading|The Eye of the World|Robert Jordan|Fantasy|814|07/17/2026|390
+Finished|The Hobbit|J.R.R. Tolkien|Fantasy|310|06/01/2026|5|A timeless adventure that never gets old.
+Finished|Dune|Frank Herbert|Science Fiction|688|05/20/2026|5|Excellent world-building and unforgettable characters.
+Finished|Harry Potter and the Sorcerer's Stone|J.K. Rowling|Fantasy|309|04/18/2026|5|A magical start to the series.
+Finished|The Hunger Games|Suzanne Collins|Dystopian|374|03/12/2026|5|Couldn't put it down.
+Finished|Ender's Game|Orson Scott Card|Science Fiction|324|02/27/2026|5|One of my favorite sci-fi novels.
+Finished|The Great Gatsby|F. Scott Fitzgerald|Classic|180|01/10/2026|4|Beautiful writing and symbolism.
+Finished|To Kill a Mockingbird|Harper Lee|Classic|336|12/15/2025|5|Powerful and thought-provoking.
+Finished|The Silent Patient|Alex Michaelides|Thriller|336|11/08/2025|4|Great twist ending.
+Finished|The Alchemist|Paulo Coelho|Fiction|208|10/02/2025|3|Interesting ideas, but not my favorite.
+Finished|The Lion, the Witch and the Wardrobe|C.S. Lewis|Fantasy|208|09/14/2025|4|A fun, nostalgic read.

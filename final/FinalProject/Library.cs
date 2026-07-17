@@ -6,8 +6,12 @@ class Library
     public void StartLibrary()
     {
         Console.Clear();
-        Console.CursorVisible = false;
+        Console.Clear();
+        Console.CursorVisible = true;
         Console.WriteLine("Welcome to your library.\n");
+
+        DisplaySpinner(2);
+
         Console.WriteLine("What would you like to do?");
         Console.WriteLine("1. Display Library");
         Console.WriteLine("2. Add Book");
@@ -15,54 +19,13 @@ class Library
         Console.WriteLine("4. Save Library");
         Console.WriteLine("5. Load Library");
         Console.WriteLine("6. Exit");
+        Console.WriteLine();
 
         int input = int.Parse(Console.ReadLine());
-        Console.CursorVisible = true;
+        //Console.CursorVisible = true;
         if (input == 1)
         {
-            Console.Clear();
-            Console.CursorVisible = false;
-            Console.WriteLine("What would you like to display?\n");
-            Console.WriteLine("1. Full Library");
-            Console.WriteLine("2. Finished Books");
-            Console.WriteLine("3. Currently Reading");
-            Console.WriteLine("4. Wishlist");
-            Console.WriteLine("5. DNF");
-
-            int input2 = int.Parse(Console.ReadLine());
-            if (input2 == 1)
-            {
-                if (_finishedBooks.Count == 0 && _readingBooks.Count == 0)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Your library is empty.");
-                    DisplaySpinner(5);
-                    StartLibrary();
-                }
-                else
-                {
-                    int _index = 1;
-                    foreach (Book book in _readingBooks)
-                    {
-                        book.DisplayBookData(_index);
-                        _index++;
-                    }
-                    foreach (Book book in _finishedBooks)
-                    {
-                        book.DisplayBookData(_index);
-                        _index++;
-                    }
-                    
-                    Console.WriteLine("Press ENTER when you would like to exit.");
-                    ConsoleKeyInfo key = Console.ReadKey();
-
-                    if (key.Key == ConsoleKey.Enter)
-                    {
-                        DisplaySpinner(5);
-                        StartLibrary();
-                    }
-                }
-            }
+            DisplayLibrary();
         }
         else if (input == 2)
         {
@@ -71,15 +34,16 @@ class Library
         }
         else if (input == 3)
         {
-
+            RemoveBook();
+            StartLibrary();
         }
         else if (input == 4)
         {
-
+            SaveLibrary();
         }
         else if (input == 5)
         {
-
+            LoadLibrary();
         }
         else if (input == 6)
         {
@@ -88,6 +52,50 @@ class Library
         else
         {
             Console.WriteLine("Please type a valid input.");
+            DisplaySpinner(1);
+            StartLibrary();
+        }
+    }
+
+    public void DisplayLibrary()
+    {
+        Console.Clear();
+        Console.CursorVisible = false;
+        Console.WriteLine("What would you like to display?\n");
+        Console.WriteLine("1. Full Library");
+        Console.WriteLine("2. Finished Books");
+        Console.WriteLine("3. Currently Reading");
+        // Console.WriteLine("4. Wishlist");
+        // Console.WriteLine("5. DNF");
+
+        int input2 = int.Parse(Console.ReadLine());
+        if (input2 == 1)
+        {
+            CheckIfEmpty();
+
+            Console.Clear();
+            int _index;
+
+            _index = DisplayReadingBooks();
+            DisplayFinishedBooks(_index);
+
+            WaitForEnter();
+        } 
+        else if (input2 == 2)
+        {
+            CheckIfEmpty();
+            Console.Clear();
+            DisplayFinishedBooks(1);
+
+            WaitForEnter();
+        }
+        else if (input2 == 3)
+        {
+            CheckIfEmpty();
+            Console.Clear();
+            DisplayReadingBooks();
+
+            WaitForEnter();
         }
     }
 
@@ -102,10 +110,7 @@ class Library
         string genre = Console.ReadLine();
         Console.Write("Page Count: ");
         int pageCount = int.Parse(Console.ReadLine());
-        // Book newBook = new Book(title, author, genre, pageCount);
-        // newBook.UpdateStatus();
-        // _books.Add(newBook);
-        
+
         Console.WriteLine("\nWhat type of book is this?");
         Console.WriteLine("1. Reading ");
         Console.WriteLine("2. Finished ");
@@ -127,13 +132,102 @@ class Library
         }
     }
 
-    public void DeleteBook()
+    public void RemoveBook()
     {
+        Console.WriteLine();
+        Console.WriteLine("Which book title would you like to remove?");
+        string title = Console.ReadLine();
+        Console.WriteLine("Who is the author?");
+        string author = Console.ReadLine();
 
+        for (int i = _readingBooks.Count - 1; i >= 0; i--)
+        {
+            if (_readingBooks[i]._title == title && _readingBooks[i]._author == author)
+            {
+                _readingBooks.RemoveAt(i);
+                Console.WriteLine("Successfully removed this book from your library.");
+                DisplaySpinner(2);
+                return;
+            }
+        }
+
+        for (int i = _finishedBooks.Count - 1; i >= 0; i--)
+        {
+            if (_finishedBooks[i]._title == title && _finishedBooks[i]._author == author)
+            {
+                _finishedBooks.RemoveAt(i);
+                Console.WriteLine("Successfully removed this book from your library.");
+                DisplaySpinner(2);
+                return;
+            }
+        }
+    }
+
+    public void SaveLibrary()
+    {
+        Console.WriteLine();
+        Console.WriteLine("What file would you like to save it to? (.txt)");
+        string _fileName = Console.ReadLine();
+        StreamWriter output = new StreamWriter(_fileName);
+
+        foreach (ReadingBook book in _readingBooks)
+        {
+            output.WriteLine(book.GetSaveString());
+        }
+
+        foreach (FinishedBook book in _finishedBooks)
+        {
+            output.WriteLine(book.GetSaveString());
+        }
+
+        output.Close();
+        DisplaySpinner(2);
+        StartLibrary();
+    }
+
+    public void LoadLibrary()
+    {
+        Console.WriteLine();
+        Console.WriteLine("What file would you like to load? (.txt)");
+        string _fileName = Console.ReadLine();
+        string[] lines = File.ReadAllLines(_fileName);
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split('|');
+
+            if (parts[0] == "Reading")
+            {
+                ReadingBook book = new ReadingBook(
+                    parts[1],
+                    parts[2],
+                    parts[3],
+                    int.Parse(parts[4]),
+                    parts[5],
+                    int.Parse(parts[6]));
+
+                _readingBooks.Add(book);
+            }
+            else if (parts[0] == "Finished")
+            {
+                FinishedBook book = new FinishedBook(
+                    parts[1],
+                    parts[2],
+                    parts[3],
+                    int.Parse(parts[4]),
+                    parts[5],
+                    int.Parse(parts[6]),
+                    parts[7]);
+
+                _finishedBooks.Add(book);
+            }
+        }
+        StartLibrary();
     }
 
     public void DisplaySpinner(int timer)
     {
+        Console.CursorVisible = false;
         string animationString = "-\\|/";
         int sleepTime = 300;
         int index = 0;
@@ -145,6 +239,53 @@ class Library
             Thread.Sleep(sleepTime);
             Console.Write("\b");
         }
-        Console.Write(" ");
+        Console.CursorVisible = true;
+    }
+
+    public void CheckIfEmpty()
+    {
+        if (_finishedBooks.Count == 0 && _readingBooks.Count == 0)
+        {
+            Console.Clear();
+            Console.WriteLine("Your library is empty.");
+            DisplaySpinner(5);
+            StartLibrary();
+        }
+    }
+
+    public int DisplayReadingBooks()
+    {
+        int _index = 1;
+
+        foreach (ReadingBook book in _readingBooks)
+            {
+                book.DisplayBook(_index);
+                _index++;
+            }
+        return _index;
+    }
+
+    public int DisplayFinishedBooks(int index)
+    {
+        int _index = index;
+
+        foreach (FinishedBook book in _finishedBooks)
+            {
+                book.DisplayBook(_index);
+                _index++;
+            }
+        return _index;
+    }
+
+    public void WaitForEnter()
+    {
+        Console.WriteLine("Press ENTER when you would like to exit.");
+        ConsoleKeyInfo key = Console.ReadKey();
+
+        if (key.Key == ConsoleKey.Enter)
+        {
+            DisplaySpinner(1);
+            StartLibrary();
+        }
     }
 }

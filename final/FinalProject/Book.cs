@@ -1,15 +1,13 @@
-using System.Data;
-
 abstract class Book
 {
-    private string _title;
-    private string _author;
+    public string _title;
+    public string _author;
     private string _genre;
     private int _pageCount;
-    private string _comment;
-    private DateTime _dateAdded;
+    //private string _comment;
+    protected string _dateAdded;
     protected string _status;
-    private int _rating;
+    //private int _rating;
     protected bool _isFinished;
 
     public Book(string title, string author, string genre, int pageCount)
@@ -18,6 +16,7 @@ abstract class Book
         _author = author;
         _genre = genre;
         _pageCount = pageCount;
+        _dateAdded = DateTime.Today.ToString("MM/dd/yyyy");
     }
 
     public virtual void UpdateStatus()
@@ -25,29 +24,20 @@ abstract class Book
         Console.WriteLine("Status cannot be updated.");
     }
 
-    public virtual void DisplayBookData(int index)
+    public virtual void DisplayBook(int index)
     {
-        Console.Clear();
-        if (_status == "Finished")
         {
-            Console.WriteLine($"{index}    Date Added: {DateTime.Today}");
+            Console.WriteLine($"{index}         Date Added: {_dateAdded}");
             Console.WriteLine("===========================================");
             Console.WriteLine($"Title:      {_title}");
             Console.WriteLine($"Author:     {_author}");
             Console.WriteLine($"Genre:      {_genre}");
             Console.WriteLine($"Pages:      {_pageCount}");
-            Console.WriteLine();
-            Console.WriteLine($"Status:     {_status}");
-            DisplayRating(_rating);
-            Console.WriteLine();
-            Console.WriteLine($"Comments:\n{_comment}");
-            Console.WriteLine("===========================================");
         }
-        // Add another one for "Reading" books and make them separate overrided methods in Finished and Reading classes.
 
     }
 
-    public void DisplayRating(int rating)
+    public string DisplayRating(int rating)
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         int maxStars = 5;
@@ -69,7 +59,12 @@ abstract class Book
         // 4. Add an extra space between the filled and empty groups if both exist
         string spacing = (rating > 0 && rating < maxStars) ? " " : "";
 
-        Console.WriteLine($"Rating:     {filledJoined}{spacing}{emptyJoined}");
+        return $"Rating:     {filledJoined}{spacing}{emptyJoined}";
+    }
+
+    public virtual string GetSaveString()
+    {
+        return $"{_title}|{_author}|{_genre}|{_pageCount}|{_dateAdded}|";
     }
 
 
