@@ -1,0 +1,4 @@
+200
+Simple|Kiss my wife|Kiss Catherine on the mouth|50|True
+Eternal|Do push ups|Push ups hell yeah|25|False
+Checklist|Play Stardew|Play for at least an hour|50|False|5|3|200
